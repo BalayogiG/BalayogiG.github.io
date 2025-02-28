@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cyber Defenders: Firewall Frenzy</title>
+    <style>
+        body { font-family: Arial, sans-serif; text-align: center; background-color: #121212; color: white; }
+        #game-container { margin: 50px auto; width: 300px; padding: 20px; background: #1e1e1e; border-radius: 10px; }
+        #info { font-size: 16px; margin: 15px 0; color: #bbb; }
+        #message { font-size: 18px; margin: 20px 0; }
+        .btn { padding: 10px; margin: 10px; cursor: pointer; border: none; border-radius: 5px; }
+        .safe { background-color: green; color: white; }
+        .threat { background-color: red; color: white; }
+        #score { font-size: 20px; margin-top: 20px; }
+        #timer { font-size: 18px; margin-top: 10px; }
+        #replay { display: none; margin-top: 20px; background-color: blue; color: white; }
+    </style>
+</head>
+<body>
+    <div id="game-container">
+        <h2>Cyber Defenders: Firewall Forge</h2>
+        <p id="info">Decide whether to allow or block incoming network requests to protect your system.</p>
+        <p id="message">Loading...</p>
+        <button class="btn safe" onclick="handleChoice(true)">Allow</button>
+        <button class="btn threat" onclick="handleChoice(false)">Block</button>
+        <p id="score">Score: 0</p>
+        <p id="timer">Time Left: 30s</p>
+        <button id="replay" class="btn" onclick="restartGame()">Replay</button>
+    </div>
+
+    <script>
+        const messages = [
+            { text: "Incoming secure transaction request", safe: true },
+            { text: "Suspicious email attachment detected", safe: false },
+            { text: "Login attempt from an unknown device", safe: false },
+            { text: "Encrypted connection established", safe: true },
+            { text: "Massive data request from unknown IP", safe: false }
+        ];
+
+        let score = 0;
+        let currentMessage;
+        let timeLeft = 30;
+        let timer;
+
+        function getRandomMessage() {
+            return messages[Math.floor(Math.random() * messages.length)];
+        }
+
+        function updateMessage() {
+            currentMessage = getRandomMessage();
+            document.getElementById("message").innerText = currentMessage.text;
+        }
+
+        function handleChoice(userThinksSafe) {
+            if (userThinksSafe === currentMessage.safe) {
+                score += 10;
+            } else {
+                score -= 5;
+            }
+            document.getElementById("score").innerText = "Score: " + score;
+            updateMessage();
+        }
+
+        function startTimer() {
+            timeLeft = 30;
+            document.getElementById("timer").innerText = "Time Left: " + timeLeft + "s";
+            document.getElementById("replay").style.display = "none";
+            timer = setInterval(() => {
+                timeLeft--;
+                document.getElementById("timer").innerText = "Time Left: " + timeLeft + "s";
+                if (timeLeft <= 0) {
+                    clearInterval(timer);
+                    alert("Game Over! Final Score: " + score);
+                    document.getElementById("replay").style.display = "block";
+                }
+            }, 1000);
+        }
+
+        function restartGame() {
+            score = 0;
+            document.getElementById("score").innerText = "Score: 0";
+            startTimer();
+            updateMessage();
+        }
+
+        updateMessage();
+        startTimer();
+    </script>
+</body>
+</html>

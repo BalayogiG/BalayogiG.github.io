@@ -3,149 +3,481 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Balayogi G</title>
+    <title>Balayogi G | Computer Science Researcher</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap Icons -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
     <style>
+        :root {
+            --primary-color: #00ff00;
+            --bg-color: #000000;
+            --text-color: #e0e0e0;
+            --bg-color: #121212;
+            --card-bg: #121212;
+            --hover-color: #00ff00;
+        }
         body {
-            font-family: 'Helvetica', sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #f7f7f7;
-            color: #333;
-        }
-
-        header {
-            background-color: #2c3e50;
-            color: #ecf0f1;
-            text-align: center;
-            padding: 20px 0;
-            margin-bottom: 20px;
-        }
-
-	h1{
-	    color: #ffffff;
-	}
-        h2, h3 {
-            color: #2c3e50;
-        }
-
-        section {
-            margin-bottom: 30px;
-            padding: 20px;
-            background-color: #fff;
-            border-radius: 8px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-        }
-
-        h2 {
-            border-bottom: 2px solid #2c3e50;
-            padding-bottom: 10px;
-        }
-
-        h3 {
-            color: #3498db;
-        }
-
-        p {
+            font-family: 'Arial', sans-serif;
             line-height: 1.6;
-            margin-bottom: 15px;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            position: relative;
+            overflow-x: hidden;
         }
-
-        ul {
-            list-style-type: none;
-            padding: 0;
-        }
-
-        li {
-            margin-bottom: 10px;
-        }
-
-        a {
-            color: #3498db;
-            text-decoration: none;
-        }
-
-        a:hover {
-            text-decoration: underline;
-        }
-
-        table {
+        #cyber-animation {
+            position: fixed;
+            top: 0;
+            left: 0;
             width: 100%;
-            border-collapse: collapse;
-            margin-top: 20px;
+            height: 100%;
+            z-index: -1;
+            background: black;
         }
-
-        th, td {
-            border: 1px solid #ecf0f1;
+        .section-header {
+            background-color: var(--primary-color);
+            color: black;
+            padding: 8px 12px;
+            border-radius: 5px;
+            margin-bottom: 15px;
+            font-size: 1.4rem;
+        }
+        
+        .profile-img-container {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            margin: 20px auto;
+            overflow: hidden;
+            border: 4px solid var(--primary-color);
+            box-shadow: 0 0 20px rgba(87, 224, 160, 0.6);
+        }
+        
+        .profile-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .card {
+            margin-bottom: 15px;
+            background-color: var(--card-bg);
+            border: none;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 15px rgba(87, 224, 96, 0.3);
+        }
+        
+        .card-body {
+            color: var(--text-color);
             padding: 15px;
-            text-align: left;
         }
-
-        th {
-            background-color: #2c3e50;
-            color: #ecf0f1;
+        
+        .card-title {
+            font-size: 1.1rem;
+            margin-bottom: 5px;
+        }
+        
+        .card-text {
+            font-size: 0.95rem;
+            margin-bottom: 0;
+        }
+        
+        .navbar {
+            background-color: rgba(0, 0, 0, 0.8) !important;
+            backdrop-filter: blur(10px);
+        }
+        
+        .navbar-brand, .nav-link {
+            color: var(--text-color) !important;
+        }
+        
+        .nav-link:hover {
+            color: var(--hover-color) !important;
+        }
+        
+        .list-group-item {
+            background-color: var(--card-bg);
+            color: var(--text-color);
+            border-color: #333;
+            padding: 10px 15px;
+        }
+        
+        footer {
+            background-color: #0a0a0a !important;
+        }
+        
+        a {
+            color: var(--primary-color);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        a:hover {
+            color: var(--hover-color);
+        }
+        
+        .social-icon {
+            transition: transform 0.3s;
+        }
+        
+        .social-icon:hover {
+            transform: scale(1.2);
+        }
+        
+        section {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        
+        h1 {
+            font-size: 1.8rem;
+        }
+        
+        .lead {
+            font-size: 1.2rem;
+        }
+        
+        /* Quote section styling */
+        .quote-section {
+            background-color: var(--card-bg);
+            border-radius: 8px;
+            padding: 20px;
+            margin: 30px auto;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+            text-align: center;
+            max-width: 800px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .quote-section::before {
+            content: '"';
+            position: absolute;
+            top: -15px;
+            left: 10px;
+            font-size: 120px;
+            color: rgba(110, 87, 224, 0.1);
+            font-family: Georgia, serif;
+        }
+        
+        .quote-text {
+            font-size: 1.1rem;
+            font-style: italic;
+            margin-bottom: 15px;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .quote-author {
+            font-weight: bold;
+            color: var(--primary-color);
+        }
+        
+        .quote-emoji {
+            font-size: 2rem;
+            margin-bottom: 10px;
+            display: block;
         }
     </style>
 </head>
 <body>
+    <canvas id="cyber-animation"></canvas>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark sticky-top">
+        <div class="container">
+            <a class="navbar-brand" href="#">Welcome!</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="#experience">Research Interests</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#education">Education</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#publications">Publications</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
+                    <li class="nav-item"><a class="nav-link" href="games.html">Play</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
 
-    <header>
-        <h1>Balayogi G</h1>
-        <p>Third Year PhD Student | balayogistark@pondiuni.ac.in | Puducherry, India | +91 00000 00000</p>
-    </header>
+     <!-- Header/Profile Section -->
+     <div class="container py-4 text-center">
+        <div class="profile-img-container">
+            <img src="./profile.png" alt="Profile Picture" class="profile-img">
+        </div>
+        <h1 class="mt-3">Balayogi G.</h1>
+        <p class="lead mb-1">Ph.D Research Scholar</p>
+        <p class="mb-1">Pondicherry University</p>
+        <p>Puducherry, India</p>
+    </div>
 
-    <section id="education">
-        <h2>Education</h2>
-        
-        <h3>Doctor of Philosophy (Ph.D.) in Computer Science</h3>
-        <p>Department of Computer Science, School of Engineering and Technology, Pondicherry University, Puducherry, India. <br>
-
-        <p><strong>Research Interests:</strong><br>
-            - Human Computer Interaction<br>
-            - Accessibilitty <br>
-            - Usable Security <br>
-            - User Authentication</p>
-	    
-	<h3>Masters in Computer Science</h3>
-	<p>Department of Computer Science, School of Engineering and Technology, Pondicherry University, Puducherry, India. <br>
-	<p>2017 to 2019</p>
-
-	<h3>Bachelors in Computer Science</h3>
-	<p>Achariya Arts and Science College (AASC), Affliated with Pondicherry University, Villianur, Puducherry, India</p>
-	<p>2014 to 2017</p>
+    <!-- Publications -->
+    <section id="research-interests" class="container py-3">
+        <h2 class="section-header"><i class="bi bi-search me-2"></i>Research Interests</h2>
+        <div class="row">
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Human-Computer Interaction</h5>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Human-Centered Artificial Intelligence</h5>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Cyber Securtiy</h5>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Artificial Intelligence</h5>
+                    </div>
+                </div>
+            </div>
+        </div>
     </section>
 
-    <section id="skills">
-        <h2>Skills</h2>
-        
-        <ul>
-            <li>Data Visualization</li>
-            <li>Critical Thinking</li>
-            <li>Communication Skills</li>
-            <!-- Add more skills as needed -->
+    <!-- Education -->
+    <section id="education" class="container py-3">
+        <h2 class="section-header"><i class="bi bi-mortarboard me-2"></i>Education</h2>
+        <div class="row">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Ph.D. in Computer Science</h5>
+                        <p class="card-text">Pondicherry University (2025)</p>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">M.Sc. in Computer Science</h5>
+                        <p class="card-text">Pondicherry University (2019)</p>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">B.Sc. in Computer Science</h5>
+                        <p class="card-text">Pondicherry University (2017)</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Publications -->
+    <section id="publications" class="container py-3">
+        <h2 class="section-header"><i class="bi bi-book me-2"></i>Publications</h2>
+        <ul class="list-group">
+            <li class="list-group-item">
+                <strong>Title of the Paper</strong><br>
+                Author(s): John Doe, Jane Smith<br>
+                <em>Journal of XYZ Research</em>, Vol. 10, No. 2, pp. 123-135, 2024. 
+                <a href="https://doi.org/example" target="_blank">[DOI]</a>
+            </li>
+            <li class="list-group-item">
+                <strong>Another Research Paper</strong><br>
+                Author(s): Alice Johnson, Bob Williams<br>
+                <em>Proceedings of the ABC Conference</em>, IEEE, pp. 56-67, 2023. 
+                <a href="https://example.com" target="_blank">[Link]</a>
+            </li>
         </ul>
     </section>
+    
 
-    <section id="publications">
-        <h2>Publications</h2>
-        
-        <ol>
-            <li> <b>Balayogi, G</b> and Kuppusamy, K. S. (2023). <a href="https://doi.org/10.1002/itl2.466" target="_blank">ARJUNA: An accessible pin entry model in smartphones for persons with low vision.</a> Internet Technology Letters. 2023; Vol 6(6):e466.</li>
-	    <li> <b>Balayogi, G.</b> and Kuppusamy, K. S. (2023). <a href="https://doi.org/10.1007/978-981-99-3963-3_20" target="_blank">Touch Pointer Movement-Based PIN Entry in Smartphones to Assist Persons with Visual Impairments.</a> In: Noor, A., Saroha, K., Pricop, E., Sen, A., Trivedi, G. (eds) Proceedings of Third Emerging Trends and Technologies on Intelligent Systems. ETTIS 2023. Lecture Notes in Networks and Systems, vol 730. Springer, Singapore.</li>
-	    <li> Kuppusamy, K.S. and <b>Balayogi, G.</b> (2022). <a href="https://doi.org/10.1007/s10207-023-00714-x" target="_blank">Accessible password strength assessment method for visually challenged users.</a> International Journal of Information Security. Vol 22, 1731–1741.</li>
-	    <li> <b>Balayogi, G.</b> and Kuppusamy, K. S. (2022). <a href="https://doi.org/10.48550/arXiv.2305.10644" target="_blank">BEEMA: Braille Adapted Enhanced PIN Entry Mechanism using Arrow keys.</a> International Conference on High Performance and Intelligent Computing (ICHPIC). PSG College of Technology, Coimbatore, Tamil Nadu, India.</li>
-        </ol>
+    <!-- Contact and Links -->
+    <section id="contact" class="container py-3">
+        <h2 class="section-header"><i class="bi bi-envelope me-2"></i>Contact & Profiles</h2>
+        <div class="row text-center">
+            <div class="col-md-4 mb-3">
+                <i class="bi bi-envelope-fill fs-2 social-icon"></i>
+                <p>balayogi@****.com</p>
+            </div>
+            <div class="col-md-4 mb-3">
+                <i class="bi bi-linkedin fs-2 social-icon"></i>
+                <p><a href="https://www.linkedin.com/in/balayogig" target="_blank">linkedin.com/in/balayogig</a></p>
+            </div>
+            <div class="col-md-4 mb-3">
+                <i class="bi bi-github fs-2 social-icon"></i>
+                <p><a href="https://www.github.com/BalayogiG" target="_blank">github.com/BalayogiG</a></p>
+            </div>
+        </div>
     </section>
 
-    <section id="participations">
-        <h2>Participations</h2>
-        
-        <ul>
-            <li>[Conference Name], [Year]</li>
-            <li>[Workshop Name], [Year]</li>
-            <!-- Add more participations as needed -->
-        </ul>
-    </section>
+    <!-- Quote Section -->
+    <div class="container">
+        <div class="quote-section" id="quote-container">
+            <span class="quote-emoji" id="quote-emoji">💡</span>
+            <p class="quote-text" id="quote-text">Loading inspiration...</p>
+            <p class="quote-author" id="quote-author"></p>
+        </div>
+    </div>
 
+    <!-- Footer -->
+    <footer class="bg-dark text-white text-center py-2">
+        <p class="mb-0">&copy; 2025 Balayogi G. All rights reserved.</p>
+    </footer>
+
+    <script>
+        const canvas = document.getElementById('cyber-animation');
+        const ctx = canvas.getContext('2d');
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+        const particles = [];
+        class Particle {
+            constructor() {
+                this.x = Math.random() * canvas.width;
+                this.y = Math.random() * canvas.height;
+                this.radius = Math.random() * 3 + 1;
+                this.speedX = (Math.random() - 0.5) * 2;
+                this.speedY = (Math.random() - 0.5) * 2;
+                this.alpha = Math.random() * 0.5 + 0.5;
+            }
+            update() {
+                this.x += this.speedX;
+                this.y += this.speedY;
+                if (this.x < 0 || this.x > canvas.width) this.speedX *= -1;
+                if (this.y < 0 || this.y > canvas.height) this.speedY *= -1;
+            }
+            draw() {
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
+                ctx.fillStyle = `rgba(0, 255, 0, ${this.alpha})`;
+                ctx.fill();
+            }
+        }
+        function init() {
+            for (let i = 0; i < 100; i++) {
+                particles.push(new Particle());
+            }
+        }
+        function animate() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            particles.forEach(p => {
+                p.update();
+                p.draw();
+            });
+            requestAnimationFrame(animate);
+        }
+        init();
+        animate();
+    </script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+        // Quotes system
+        const quotes = [
+                {
+                    text: "In the vast sequence of life, every base pair matters.",
+                    author: "- Francis Collins",
+                    emoji: "🧬"
+                },
+                {
+                    text: "The code of life isn't just in DNA, but in how we decode its mysteries.",
+                    author: "- Jennifer Doudna",
+                    emoji: "🔬"
+                },
+                {
+                    text: "Science knows no country, because knowledge belongs to humanity.",
+                    author: "- Louis Pasteur",
+                    emoji: "🌍"
+                },
+                {
+                    text: "The beauty of data is not in the numbers, but in the patterns they reveal.",
+                    author: "- Rosalind Franklin",
+                    emoji: "📊"
+                },
+                {
+                    text: "The most exciting phrase in science is not 'Eureka!' but 'That's funny...'",
+                    author: "- Isaac Asimov",
+                    emoji: "💭"
+                },
+                {
+                    text: "The good thing about science is that it's true whether or not you believe in it.",
+                    author: "- Neil deGrasse Tyson",
+                    emoji: "⚗️"
+                },
+                {
+                    text: "Biology is the study of complicated things that have the appearance of having been designed with a purpose.",
+                    author: "- Richard Dawkins",
+                    emoji: "🦠"
+                },
+                {
+                    text: "The greatest enemy of knowledge is not ignorance, it is the illusion of knowledge.",
+                    author: "- Stephen Hawking",
+                    emoji: "🔭"
+                },
+                {
+                    text: "Somewhere, something incredible is waiting to be known.",
+                    author: "- Carl Sagan",
+                    emoji: "✨"
+                },
+                {
+                    text: "The first rule of intelligent tinkering is to save all the parts.",
+                    author: "- Paul Ehrlich",
+                    emoji: "🧩"
+                },
+                {
+                    text: "Data is the new science. Big Data holds the answers.",
+                    author: "- Pat Gelsinger",
+                    emoji: "💻"
+                },
+                {
+                    text: "The universe is not only stranger than we imagine, it's stranger than we can imagine.",
+                    author: "- J.B.S. Haldane",
+                    emoji: "🌌"
+                }
+            ];
+            
+            // Display a random quote
+            function displayRandomQuote() {
+                const quoteContainer = document.getElementById('quote-container');
+                const quoteText = document.getElementById('quote-text');
+                const quoteAuthor = document.getElementById('quote-author');
+                const quoteEmoji = document.getElementById('quote-emoji');
+                
+                // Get random quote
+                const randomIndex = Math.floor(Math.random() * quotes.length);
+                const quote = quotes[randomIndex];
+                
+                // Update DOM
+                quoteText.textContent = quote.text;
+                quoteAuthor.textContent = quote.author;
+                quoteEmoji.textContent = quote.emoji;
+                
+                // Add fade-in effect
+                quoteContainer.style.opacity = 0;
+                setTimeout(() => {
+                    quoteContainer.style.opacity = 1;
+                    quoteContainer.style.transition = 'opacity 1s ease';
+                }, 100);
+            }
+            
+            // Show initial quote
+            displayRandomQuote();
+            
+            // Change quote every 30 seconds (optional)
+            setInterval(displayRandomQuote, 30000);
+        });
+    </script>
+
+
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
-

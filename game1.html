@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Password Generator</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: #121212;
+            color: white;
+            margin: 50px;
+        }
+        #generator-container {
+            background: #1e1e1e;
+            padding: 20px;
+            border-radius: 10px;
+            display: inline-block;
+        }
+        .draggable {
+            display: inline-block;
+            padding: 10px;
+            margin: 5px;
+            background-color: #007bff;
+            color: white;
+            cursor: grab;
+            border-radius: 5px;
+        }
+        #dropzone {
+            margin-top: 20px;
+            padding: 20px;
+            background-color: #333;
+            border: 2px dashed #777;
+            min-height: 50px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        button {
+            margin-top: 10px;
+            padding: 10px;
+            font-size: 16px;
+            background-color: #28a745;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div id="generator-container">
+        <h2>Drag & Drop Password Generator</h2>
+        <p>Drag elements into the box to generate a password</p>
+        <div id="characters">
+            <span class="draggable" draggable="true" data-type="lowercase">a-z</span>
+            <span class="draggable" draggable="true" data-type="uppercase">A-Z</span>
+            <span class="draggable" draggable="true" data-type="numbers">0-9</span>
+            <span class="draggable" draggable="true" data-type="symbols">@#$%</span>
+        </div>
+        <div id="dropzone">Drop elements here</div>
+        <button onclick="generatePassword()">Generate Password</button>
+        <button onclick="resetGenerator()">Reset</button>
+        <p id="generatedPassword"></p>
+    </div>
+
+    <script>
+        const dropzone = document.getElementById("dropzone");
+        let selectedTypes = [];
+
+        document.querySelectorAll(".draggable").forEach(item => {
+            item.addEventListener("dragstart", event => {
+                event.dataTransfer.setData("text", event.target.getAttribute("data-type"));
+            });
+        });
+
+        dropzone.addEventListener("dragover", event => {
+            event.preventDefault();
+        });
+
+        dropzone.addEventListener("drop", event => {
+            event.preventDefault();
+            let type = event.dataTransfer.getData("text");
+            if (!selectedTypes.includes(type)) {
+                selectedTypes.push(type);
+                let span = document.createElement("span");
+                span.textContent = type.toUpperCase() + " ";
+                span.style.color = "#ffcc00";
+                dropzone.appendChild(span);
+            }
+        });
+
+        function generatePassword() {
+            let charSets = {
+                lowercase: "abcdefghijklmnopqrstuvwxyz",
+                uppercase: "ABCDEFGHIJKLMNOPQRSTUVWXYZ",
+                numbers: "0123456789",
+                symbols: "@#$%^&*()_+{}[]"
+            };
+
+            let password = "";
+            let possibleChars = "";
+            selectedTypes.forEach(type => {
+                possibleChars += charSets[type] || "";
+            });
+
+            if (possibleChars.length === 0) {
+                document.getElementById("generatedPassword").innerText = "Please drag characters first!";
+                return;
+            }
+
+            for (let i = 0; i < 12; i++) {
+                password += possibleChars.charAt(Math.floor(Math.random() * possibleChars.length));
+            }
+
+            document.getElementById("generatedPassword").innerText = "Generated Password: " + password;
+        }
+
+        function resetGenerator() {
+            selectedTypes = [];
+            dropzone.innerHTML = "Drop elements here";
+            document.getElementById("generatedPassword").innerText = "";
+        }
+    </script>
+</body>
+</html>
