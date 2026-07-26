@@ -4,13 +4,14 @@ export type NavLink = {
 };
 
 export const navLinks: NavLink[] = [
-  { href: "#about", label: "About" },
-  { href: "#experience", label: "Experience" },
-  { href: "#research", label: "Research" },
-  { href: "#publications", label: "Publications" },
-  { href: "#projects", label: "Projects" },
-  { href: "#skills", label: "Skills" },
-  { href: "#contact", label: "Contact" },
+  { href: "/#about", label: "About" },
+  { href: "/#experience", label: "Experience" },
+  { href: "/#research", label: "Research" },
+  { href: "/#publications", label: "Publications" },
+  { href: "/#projects", label: "Projects" },
+  { href: "/blog", label: "Blog" },
+  { href: "/#skills", label: "Skills" },
+  { href: "/#contact", label: "Contact" },
 ];
 
 export const hero = {

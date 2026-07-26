@@ -15,6 +15,10 @@ Open [http://localhost:3000](http://localhost:3000).
 
 All page content (about, experience, publications, projects, skills, contact links) lives in [`src/lib/data.ts`](src/lib/data.ts) — edit that file to update the site.
 
+## Blog
+
+Add a `.md` file to [`content/blog/`](content/blog/) to publish a new post — see [`content/blog/README.md`](content/blog/README.md) for the format. Commit and push; the post goes live automatically.
+
 ## Build
 
 ```bash

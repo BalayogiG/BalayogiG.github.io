@@ -1,13 +1,23 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { Menu, X } from "lucide-react";
 import { navLinks } from "@/lib/data";
 
+function sectionIdFromHref(href: string): string | null {
+  const hashIndex = href.indexOf("#");
+  return hashIndex === -1 ? null : href.slice(hashIndex + 1);
+}
+
 export default function Navbar() {
+  const pathname = usePathname();
+  const isHome = pathname === "/";
+
   const [isOpen, setIsOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
-  const [activeSection, setActiveSection] = useState<string>("");
+  const [activeId, setActiveId] = useState<string>("");
 
   useEffect(() => {
     const onScroll = () => setIsScrolled(window.scrollY > 8);
@@ -17,18 +27,20 @@ export default function Navbar() {
   }, []);
 
   useEffect(() => {
-    const sections = navLinks
-      .map((link) => document.querySelector(link.href))
-      .filter((el): el is Element => el !== null);
+    if (!isHome || !("IntersectionObserver" in window)) return;
 
-    if (!sections.length || !("IntersectionObserver" in window)) return;
+    const sections = navLinks
+      .map((link) => sectionIdFromHref(link.href))
+      .filter((id): id is string => id !== null)
+      .map((id) => document.getElementById(id))
+      .filter((el): el is HTMLElement => el !== null);
+
+    if (!sections.length) return;
 
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            setActiveSection(`#${entry.target.id}`);
-          }
+          if (entry.isIntersecting) setActiveId(entry.target.id);
         });
       },
       { rootMargin: "-40% 0px -55% 0px", threshold: 0 }
@@ -36,7 +48,13 @@ export default function Navbar() {
 
     sections.forEach((section) => observer.observe(section));
     return () => observer.disconnect();
-  }, []);
+  }, [isHome]);
+
+  const isActive = (href: string) => {
+    if (href === "/blog") return pathname.startsWith("/blog");
+    const id = sectionIdFromHref(href);
+    return isHome && id !== null && id === activeId;
+  };
 
   return (
     <header
@@ -47,26 +65,21 @@ export default function Navbar() {
       }`}
     >
       <nav className="mx-auto flex max-w-6xl items-center justify-between px-6 py-4">
-        <a
-          href="#hero"
-          className="font-mono text-sm font-semibold tracking-tight text-foreground"
-        >
+        <Link href="/" className="font-mono text-sm font-semibold tracking-tight text-foreground">
           Balayogi&nbsp;G
-        </a>
+        </Link>
 
         <ul className="hidden items-center gap-1 md:flex">
           {navLinks.map((link) => (
             <li key={link.href}>
-              <a
+              <Link
                 href={link.href}
                 className={`rounded-full px-4 py-2 text-sm transition-colors ${
-                  activeSection === link.href
-                    ? "text-foreground"
-                    : "text-muted hover:text-foreground"
+                  isActive(link.href) ? "text-foreground" : "text-muted hover:text-foreground"
                 }`}
               >
                 {link.label}
-              </a>
+              </Link>
             </li>
           ))}
         </ul>
@@ -87,17 +100,17 @@ export default function Navbar() {
           <ul className="flex flex-col gap-1 px-6 py-4">
             {navLinks.map((link) => (
               <li key={link.href}>
-                <a
+                <Link
                   href={link.href}
                   onClick={() => setIsOpen(false)}
                   className={`block rounded-lg px-3 py-2.5 text-sm ${
-                    activeSection === link.href
+                    isActive(link.href)
                       ? "bg-surface text-foreground"
                       : "text-muted hover:bg-surface hover:text-foreground"
                   }`}
                 >
                   {link.label}
-                </a>
+                </Link>
               </li>
             ))}
           </ul>
