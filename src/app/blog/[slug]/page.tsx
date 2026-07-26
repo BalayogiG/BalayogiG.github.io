@@ -6,8 +6,12 @@ import { getLocalPostsMeta, getPostBySlug, formatPostDate } from "@/lib/posts";
 
 export const dynamicParams = false;
 
+// `output: "export"` requires at least one entry here, even if there are
+// currently zero locally-hosted posts (e.g. all posts are external
+// link-outs) — fall back to a slug that resolves to notFound() below.
 export function generateStaticParams() {
-  return getLocalPostsMeta().map((post) => ({ slug: post.slug }));
+  const posts = getLocalPostsMeta();
+  return posts.length > 0 ? posts.map((post) => ({ slug: post.slug })) : [{ slug: "_none" }];
 }
 
 export async function generateMetadata(
