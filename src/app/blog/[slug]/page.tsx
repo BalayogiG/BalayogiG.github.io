@@ -2,19 +2,19 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { ArrowLeft } from "lucide-react";
-import { getAllPostsMeta, getPostBySlug, formatPostDate } from "@/lib/posts";
+import { getLocalPostsMeta, getPostBySlug, formatPostDate } from "@/lib/posts";
 
 export const dynamicParams = false;
 
 export function generateStaticParams() {
-  return getAllPostsMeta().map((post) => ({ slug: post.slug }));
+  return getLocalPostsMeta().map((post) => ({ slug: post.slug }));
 }
 
 export async function generateMetadata(
   props: PageProps<"/blog/[slug]">
 ): Promise<Metadata> {
   const { slug } = await props.params;
-  const meta = getAllPostsMeta().find((post) => post.slug === slug);
+  const meta = getLocalPostsMeta().find((post) => post.slug === slug);
   if (!meta) return {};
 
   return {
@@ -25,7 +25,7 @@ export async function generateMetadata(
 
 export default async function BlogPostPage(props: PageProps<"/blog/[slug]">) {
   const { slug } = await props.params;
-  const exists = getAllPostsMeta().some((post) => post.slug === slug);
+  const exists = getLocalPostsMeta().some((post) => post.slug === slug);
   if (!exists) notFound();
 
   const post = await getPostBySlug(slug);

@@ -16,6 +16,8 @@ export type PostMeta = {
   date: string;
   excerpt: string;
   tags: string[];
+  externalUrl?: string;
+  source?: string;
 };
 
 export type Post = PostMeta & { html: string };
@@ -26,6 +28,8 @@ type FrontMatter = {
   excerpt?: string;
   tags?: string[];
   draft?: boolean;
+  externalUrl?: string;
+  source?: string;
 };
 
 function getPostSlugs(): string[] {
@@ -53,8 +57,14 @@ export function getAllPostsMeta(): PostMeta[] {
       date: data.date,
       excerpt: data.excerpt ?? "",
       tags: data.tags ?? [],
+      externalUrl: data.externalUrl,
+      source: data.source,
     }))
     .sort((a, b) => (a.date < b.date ? 1 : -1));
+}
+
+export function getLocalPostsMeta(): PostMeta[] {
+  return getAllPostsMeta().filter((post) => !post.externalUrl);
 }
 
 export async function getPostBySlug(slug: string): Promise<Post> {
