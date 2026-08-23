@@ -9,7 +9,9 @@ export default function About() {
       <SectionHeading eyebrow="About" title="A little about my work" />
 
       <div className="grid gap-12 lg:grid-cols-2 lg:gap-16">
-        <ScrollReveal className="space-y-5 text-base leading-relaxed text-muted">
+        <ScrollReveal
+          className="space-y-5 rounded-2xl border border-border bg-surface/80 p-6 text-base leading-relaxed text-foreground/90 backdrop-blur-sm sm:p-8"
+        >
           {about.paragraphs.map((paragraph) => (
             <p key={paragraph.slice(0, 24)}>{paragraph}</p>
           ))}

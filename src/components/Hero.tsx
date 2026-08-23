@@ -8,6 +8,8 @@ export default function Hero() {
       id="hero"
       className="relative flex min-h-screen flex-col items-center justify-center px-6 pt-24 text-center"
     >
+      <div className="absolute inset-0 -z-10 bg-gradient-to-b from-background/40 via-background/80 to-background" />
+
       <ScrollReveal as="span" className="block">
         <p className="font-mono text-sm font-medium tracking-tight text-accent">
           {hero.eyebrow}

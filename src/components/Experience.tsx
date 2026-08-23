@@ -14,7 +14,7 @@ function Timeline({ items }: { items: TimelineItem[] }) {
             <p className="mt-0.5 text-sm text-accent-2">{item.org}</p>
             <p className="mt-0.5 font-mono text-xs text-muted">{item.meta}</p>
             {item.description && (
-              <p className="mt-2 text-sm leading-relaxed text-muted">{item.description}</p>
+              <p className="mt-2 text-sm leading-relaxed text-foreground/80">{item.description}</p>
             )}
           </li>
         </ScrollReveal>
@@ -29,7 +29,7 @@ export default function Experience() {
       <SectionHeading eyebrow="Experience & Education" title="Where I've worked and studied" />
 
       <div className="grid gap-12 md:grid-cols-2 md:gap-16">
-        <div>
+        <div className="rounded-2xl border border-border bg-surface/80 p-6 backdrop-blur-sm sm:p-8">
           <h3 className="mb-8 flex items-center gap-2 text-sm font-semibold tracking-wide text-foreground uppercase">
             <Briefcase size={16} className="text-accent" />
             Experience
@@ -37,7 +37,7 @@ export default function Experience() {
           <Timeline items={experience} />
         </div>
 
-        <div>
+        <div className="rounded-2xl border border-border bg-surface/80 p-6 backdrop-blur-sm sm:p-8">
           <h3 className="mb-8 flex items-center gap-2 text-sm font-semibold tracking-wide text-foreground uppercase">
             <GraduationCap size={16} className="text-accent" />
             Education

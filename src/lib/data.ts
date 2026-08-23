@@ -118,11 +118,46 @@ export type Publication = {
 
 export const publications: Publication[] = [
   {
+    year: "2025",
+    title: "Image encryption via second-order derivative structures: a Hessian-based approach",
+    authors:
+      "Lakshmi, A. Vijaya, Balayogi, G. · International Journal of Information Technology, Springer",
+    href: "https://link.springer.com/article/10.1007/s41870-025-02689-5",
+  },
+  {
+    year: "2025",
+    title: "Human-Centric Ethical AI in the Digital World",
+    authors:
+      "Balayogi, G., Lakshmi, A. Vijaya, Sophie, S. Lourdumarie · Ethical Dimensions of AI Development, IGI Global Scientific Publishing",
+    href: "https://www.igi-global.com/chapter/human-centric-ethical-ai-in-the-digital-world/359643",
+  },
+  {
+    year: "2024",
+    title:
+      "LingPass: An approach for multilingual passphrase generation by integrating English and Tamil",
+    authors: "Balayogi, G., Kuppusamy, K.S. · Internet Technology Letters, Wiley (Scopus)",
+    href: "https://doi.org/10.1002/itl2.580",
+  },
+  {
     year: "2024",
     title:
       "An approach for mitigating cognitive load in password management by integrating QR codes and steganography",
     authors: "Balayogi, G., Kuppusamy, K.S. · Security and Privacy, Wiley (Scopus)",
     href: "https://doi.org/10.1002/spy2.447",
+  },
+  {
+    year: "2023",
+    title:
+      "Touch Pointer Movement-Based PIN Entry in Smartphones to Assist Persons with Visual Impairments",
+    authors:
+      "Balayogi, G., Kuppusamy, K.S. · International Conference on Emerging Trends and Technologies on Intelligent Systems, Springer Nature Singapore",
+    href: "https://link.springer.com/chapter/10.1007/978-981-99-3963-3_20",
+  },
+  {
+    year: "2023",
+    title: "ARJUNA: An accessible PIN entry model in smartphones for persons with low vision",
+    authors: "Balayogi, G., Kuppusamy, K.S. · Internet Technology Letters, Wiley (Scopus)",
+    href: "https://doi.org/10.1002/itl2.466",
   },
   {
     year: "2023",
@@ -132,33 +167,18 @@ export const publications: Publication[] = [
     href: "https://doi.org/10.1007/s10207-023-00714-x",
   },
   {
-    year: "2023",
-    title: "ARJUNA: An accessible PIN entry model in smartphones for persons with low vision",
-    authors: "Balayogi, G., Kuppusamy, K.S. · Internet Technology Letters, Wiley (Scopus)",
-    href: "https://doi.org/10.1002/itl2.466",
-  },
-  {
-    year: "—",
+    year: "2022",
     title:
-      "LINGPASS: An approach for multilingual passphrase generation by integrating English and Tamil",
-    authors: "Balayogi, G., Kuppusamy, K.S. · Internet Technology Letters, Wiley (Scopus)",
-    href: "https://doi.org/10.1002/itl2.580",
+      "Cyber Security Challenges in Learning Management System for Persons with Visual Impairments",
+    authors:
+      "Balayogi, G., Kuppusamy, K.S. · International Conference on Technology Enabled Online & Distance Learning for Education: In the Context of NEP 2020 (ICTOODLE-2022)",
   },
   {
-    year: "—",
-    title: "Human-Centric Ethical AI in the Digital World",
-    authors: "Balayogi, G.",
-  },
-  {
-    year: "—",
+    year: "2022",
     title: "BEEMA: Braille Adapted Enhanced PIN Entry Mechanism using Arrow keys",
-    authors: "Balayogi, G.",
-  },
-  {
-    year: "—",
-    title:
-      "Touch Pointer Movement-Based PIN Entry in Smartphones to Assist Persons with Visual Impairments",
-    authors: "Balayogi, G.",
+    authors:
+      "Balayogi, G., Kuppusamy, K.S. · International Conference on High Performance and Intelligent Computing",
+    href: "https://arxiv.org/abs/2305.10644",
   },
 ];
 
@@ -171,40 +191,57 @@ export type Project = {
 
 export const projects: Project[] = [
   {
-    title: "Neural Network Pruner",
-    description:
-      "A Python toolkit to efficiently prune redundant neurons in CNNs while maintaining accuracy.",
-    status: "In development",
-  },
-  {
     title: "Prompt Quality Evaluation Tool",
     description:
       "A lightweight tool for assessing the quality of prompts based on selected metrics.",
     href: "https://github.com/BalayogiG/Prompt_Quality_Evaluator",
   },
   {
-    title: "IronSurf Browser",
+    title: "AI Evaluation Tool",
     description:
-      "A customizable Electron-based web browser with a futuristic, HUD-style interface for managing multiple floating panels.",
-    href: "https://github.com/BalayogiG/IronSurf",
+      "A tool built at CeRAI, IIT Madras for evaluating AI models and outputs against structured assessment criteria.",
+    href: "https://github.com/cerai-iitm/AIEvaluationTool",
+  },
+  {
+    title: "CulSafe-MME",
+    description:
+      "A multimodal evaluation framework for assessing cultural safety in AI-generated content.",
+    href: "https://github.com/BalayogiG/CulSafe-MME",
+  },
+  {
+    title: "VibeThinker-3B Hands-On",
+    description:
+      "A hands-on exploration and evaluation of the VibeThinker-3B language model.",
+    href: "https://github.com/BalayogiG/vibethinker-3b-hands-on",
+  },
+  {
+    title: "HDACE",
+    description:
+      "A novel image encryption and decryption method using Hessian matrix eigenvalues and chaotic sequences, leveraging local image structure analysis and non-linear chaotic dynamics for enhanced security.",
+    href: "https://github.com/BalayogiG/HDACE",
   },
 ];
 
 export const technicalSkills = [
-  "OCI",
-  "Selenium",
-  "Automation",
+  "LLM Evaluation",
+  "Benchmarking",
   "Python",
-  "JavaScript",
-  "MongoDB",
+  "AI Software Engineering",
+  "Responsible AI",
+  "AI Safety",
+  "Machine Learning",
+  "Deep Learning",
+  "Research",
+  "Scientific Communication"
 ];
 
 export const certifications = [
-  "Generative AI for Educators Certificate",
-  "Introduction to Robotic Process Automation",
-  "Introduction to JavaScript Development",
-  "Introduction to Python",
-  "M001: MongoDB Basics",
+  "Teaching the AI Fluency Framework",
+  "Machine Learning Operations (MLOps): Getting Started",
+  "Oracle Cloud Infrastructure 2025 AI Foundations Associate (1Z0-1122-25)",
+  "AI Agents Fundamentals",
+  "Generative AI Fundamentals Accreditation",
+  "Introduction to Responsible AI",
 ];
 
 export const languagesAndHonors = [

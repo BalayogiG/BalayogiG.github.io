@@ -2,14 +2,14 @@
 @plugin "@tailwindcss/typography";
 
 :root {
-  --background: #05070d;
-  --surface: #0c1120;
-  --surface-hover: #121a2e;
-  --border: rgba(255, 255, 255, 0.08);
-  --foreground: #e7ebf3;
-  --muted: #8c93a8;
-  --accent: #7dd3fc;
-  --accent-2: #a78bfa;
+  --background: #120d08;
+  --surface: #1d150d;
+  --surface-hover: #291e12;
+  --border: rgba(232, 197, 140, 0.14);
+  --foreground: #f3e9d8;
+  --muted: #b8a68a;
+  --accent: #e8b563;
+  --accent-2: #d98c4a;
 }
 
 @theme inline {
@@ -30,17 +30,33 @@
 }
 
 body {
+  position: relative;
   background: var(--background);
   color: var(--foreground);
   background-image:
-    radial-gradient(ellipse 80% 50% at 50% -20%, rgba(125, 211, 252, 0.15), transparent),
-    radial-gradient(ellipse 60% 40% at 100% 0%, rgba(167, 139, 250, 0.1), transparent);
+    radial-gradient(ellipse 80% 50% at 50% -20%, rgba(232, 181, 99, 0.14), transparent),
+    radial-gradient(ellipse 60% 40% at 100% 0%, rgba(217, 140, 74, 0.1), transparent);
   background-attachment: fixed;
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -30;
+  background-image: url("/hero-hands.png");
+  background-repeat: no-repeat;
+  background-size: 240% auto;
+  background-position: 88% 92%;
+  background-attachment: fixed;
+  opacity: 0.07;
+  filter: sepia(0.4) saturate(1.1);
+  pointer-events: none;
 }
 
 ::selection {
   background: var(--accent-2);
-  color: #05070d;
+  color: #120d08;
 }
 
 .reveal {
