@@ -1,13 +1,92 @@
 "use client";
 
 import Image from "next/image";
+import { usePathname } from "next/navigation";
 import { useEffect, useRef } from "react";
 
 function easeOutCubic(x: number) {
   return 1 - Math.pow(1 - x, 3);
 }
 
-export default function HeroBackground() {
+function BlogHeroBackground() {
+  const blogRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const blog = blogRef.current;
+    if (!blog) return;
+
+    const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    if (reduceMotion) return;
+
+    let targetX = 0;
+    let targetY = 0;
+    let currentX = 0;
+    let currentY = 0;
+    let raf = 0;
+
+    const onPointerMove = (e: PointerEvent) => {
+      targetX = e.clientX / window.innerWidth - 0.5;
+      targetY = e.clientY / window.innerHeight - 0.5;
+    };
+
+    const onPointerLeave = () => {
+      targetX = 0;
+      targetY = 0;
+    };
+
+    const tick = () => {
+      currentX += (targetX - currentX) * 0.06;
+      currentY += (targetY - currentY) * 0.06;
+
+      const rotateY = currentX * 10;
+      const rotateX = -currentY * 10;
+
+      blog.style.transform = `translate3d(${currentX * -18}px, 36px, 0) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale(1.45)`;
+
+      raf = requestAnimationFrame(tick);
+    };
+
+    window.addEventListener("pointermove", onPointerMove);
+    window.addEventListener("pointerleave", onPointerLeave);
+    raf = requestAnimationFrame(tick);
+
+    return () => {
+      window.removeEventListener("pointermove", onPointerMove);
+      window.removeEventListener("pointerleave", onPointerLeave);
+      cancelAnimationFrame(raf);
+    };
+  }, []);
+
+  return (
+    <div
+      className="pointer-events-none fixed inset-0 -z-20 overflow-hidden"
+      style={{ perspective: "1200px" }}
+      aria-hidden
+    >
+      <div
+        ref={blogRef}
+        className="absolute inset-0 will-change-transform"
+        style={{
+          transform: "translate3d(0px, 36px, 0) scale(1.45)",
+          transformStyle: "preserve-3d",
+          transformOrigin: "50% 50%",
+        }}
+      >
+        <Image
+          src="/hero-hands.png"
+          alt=""
+          fill
+          priority
+          sizes="100vw"
+          className="object-cover"
+          style={{ objectPosition: "51% 30%" }}
+        />
+      </div>
+    </div>
+  );
+}
+
+function HomeHeroBackground() {
   const wrapRef = useRef<HTMLDivElement>(null);
   const leftRef = useRef<HTMLDivElement>(null);
   const rightRef = useRef<HTMLDivElement>(null);
@@ -162,4 +241,16 @@ export default function HeroBackground() {
       </div>
     </div>
   );
+}
+
+export default function HeroBackground() {
+  const pathname = usePathname();
+
+  if (pathname.startsWith("/blog")) {
+    return <BlogHeroBackground key={pathname} />;
+  }
+
+  if (pathname !== "/") return null;
+
+  return <HomeHeroBackground key={pathname} />;
 }

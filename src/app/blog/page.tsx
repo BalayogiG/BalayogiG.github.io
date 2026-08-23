@@ -63,7 +63,7 @@ function PostRow({ post }: { post: PostMeta }) {
   }
 
   return (
-    <Link href={`/blog/${post.slug}`} className={rowClass}>
+    <Link href={`/blog/${post.slug}/`} className={rowClass}>
       {rowContent}
     </Link>
   );
@@ -78,6 +78,7 @@ export default function BlogIndexPage() {
         eyebrow="Writing"
         title="Blog"
         description="Notes on conversational AI evaluation, accessible security, and responsible AI."
+        descriptionClassName="mt-4 max-w-xl text-base text-foreground/90 [text-shadow:0_1px_12px_rgba(0,0,0,0.85)]"
       />
 
       {posts.length === 0 ? (

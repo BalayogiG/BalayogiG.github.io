@@ -51,7 +51,7 @@ export default function Navbar() {
   }, [isHome]);
 
   const isActive = (href: string) => {
-    if (href === "/blog") return pathname.startsWith("/blog");
+    if (href === "/blog/") return pathname.startsWith("/blog");
     const id = sectionIdFromHref(href);
     return isHome && id !== null && id === activeId;
   };

@@ -43,7 +43,7 @@ function PostCard({ post }: { post: PostMeta }) {
   }
 
   return (
-    <Link href={`/blog/${post.slug}`} className={cardClass}>
+    <Link href={`/blog/${post.slug}/`} className={cardClass}>
       {cardContent}
     </Link>
   );
@@ -59,7 +59,7 @@ export default function BlogPreview() {
         <SectionHeading eyebrow="Writing" title="From the blog" />
         <ScrollReveal className="mb-12">
           <Link
-            href="/blog"
+            href="/blog/"
             className="inline-flex items-center gap-1.5 text-sm font-medium text-accent hover:text-accent-2"
           >
             View all posts

@@ -37,7 +37,7 @@ export default async function BlogPostPage(props: PageProps<"/blog/[slug]">) {
   return (
     <article className="mx-auto max-w-3xl px-6 py-24 sm:py-32">
       <Link
-        href="/blog"
+        href="/blog/"
         className="inline-flex items-center gap-2 text-sm text-muted transition-colors hover:text-accent"
       >
         <ArrowLeft size={16} />

@@ -4,9 +4,15 @@ type SectionHeadingProps = {
   eyebrow: string;
   title: string;
   description?: string;
+  descriptionClassName?: string;
 };
 
-export default function SectionHeading({ eyebrow, title, description }: SectionHeadingProps) {
+export default function SectionHeading({
+  eyebrow,
+  title,
+  description,
+  descriptionClassName,
+}: SectionHeadingProps) {
   return (
     <div className="mb-12 max-w-2xl">
       <ScrollReveal as="span" className="block">
@@ -21,7 +27,7 @@ export default function SectionHeading({ eyebrow, title, description }: SectionH
       </ScrollReveal>
       {description && (
         <ScrollReveal delay={140}>
-          <p className="mt-4 text-base text-muted">{description}</p>
+          <p className={descriptionClassName ?? "mt-4 text-base text-muted"}>{description}</p>
         </ScrollReveal>
       )}
     </div>
